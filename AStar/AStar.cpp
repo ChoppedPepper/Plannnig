@@ -21,14 +21,12 @@ list<Node*> AStar::getPath(int startX, int endX, int startY, int endY){
     // find the path 
     while(!openList_.empty()){
         // get the node in openList_ with the least f value, named leastNode
-        // cout << "size of open list" << openList_.size() << endl;
         Node* leastNode = getLeastNode();
-        // cout << "leastNode" << leastNode->x << " " << leastNode->y << endl;
-        // cout << "size of open list" << openList_.size() << endl;
+        // cout << "leastNode " << leastNode->x << " " << leastNode->y << endl;
+        // cout << "size of open list " << openList_.size() << endl;
         
         // put leastNode in the closeList
         putNodeInList(leastNode, closeList_);
-        // cout << "size of close list" << closeList_.size() << endl;
         // find the adjacent nodes of leastNode
         vector<Node*> adjacentNodes = getAdjacentNode(leastNode); 
         // work on the adjacent nodes
@@ -53,12 +51,10 @@ list<Node*> AStar::getPath(int startX, int endX, int startY, int endY){
 
     // get the path
     list<Node*> pathList;    
-    if(endNode_->parent){  // if find the path
+    if(endNode_->parent){  // if find the path, get it
         // track back according to endNode's parent to get the path
-        // cout << "last but one node " << endNode_->parent->x << " " << endNode_->parent->y << endl;
-        trackEndNode(pathList);
-        
-    }else{
+        trackEndNode(pathList);        
+    }else{ // else print message
         cout << "the path is not exist" << endl;
     }
     return pathList;        
