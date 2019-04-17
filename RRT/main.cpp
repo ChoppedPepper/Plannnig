@@ -1,7 +1,7 @@
-#include "AStar.h"
+#include "RRT.h"
 #include <vector>
-#include <list>
 #include <iostream>
+#include <memory>
 
 using namespace std;
 
@@ -18,18 +18,22 @@ int main(){
         }
         cout << endl;
     }
+
+    // init  step length
+    int stepLength = 1;
     
     // get path    
     int startX = 0, endX = 0, startY = 0, endY = 0;
-    cout << "please input the coordinate(x, y) of start node and end node" << endl;        
+    cout << "please input the coordinate(x, y) of start node and end node" << endl;
+    cout << "make sure the end node is available" << endl;        
     cin >> startX >> endX >> startY >> endY;
     cout << endl;
     cout << "you input is (" << startX << ", " << endX << ") for start node and (" 
          << startY << ", " << endY << ") for end node" << endl;
-    AStar astar;
-    astar.init(searchMap);
-    list<Node*> path;
-    path = astar.getPath(startX, endX, startY, endY);
+    RRT RRTPlanner;
+    RRTPlanner.init(searchMap, stepLength);
+    vector<shared_ptr<Node>> path;
+    path = RRTPlanner.getPath(startX, endX, startY, endY);
 
     // print path
     for(auto point : path){

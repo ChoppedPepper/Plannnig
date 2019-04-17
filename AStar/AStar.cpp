@@ -5,10 +5,6 @@
 
 using namespace std;
 
-AStar::~AStar(){
-
-}
-
 void AStar::init(vector<vector<int>> gridMap){
     gridMap_ = gridMap;    
 }

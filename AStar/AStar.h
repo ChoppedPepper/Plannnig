@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <queue>
 #include <list>
 
 using namespace std;
@@ -9,18 +10,15 @@ struct Node{
     int x, y;
     int f, g, h;
     Node* parent = nullptr;
-
+    
     Node() = default;
-    Node(int a, int b) : x(a), y(b), f(0), g(0), h(0), parent(nullptr) { } 
+    Node(int a, int b) : x(a), y(b), f(0), g(0), h(0), parent(nullptr) { }
 };
 
-class AStar
-{
+class AStar{
 public:
     void init(vector<vector<int>> gridMap);
     list<Node*> getPath(int startX, int endX, int startY, int endY);
-    AStar() = default;
-    ~AStar();
 
 private:
     Node* getLeastNode();
